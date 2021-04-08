@@ -1,0 +1,14 @@
+data/
+test_docs/
+python_src/
+.settings/
+.idea/ 
+target/
+lib/jars/
+.externalToolBuilders/
+bin/
+application_sandbox.iml
+.classpath
+.project
+.pydevproject
+output.txt

@@ -1,0 +1,165 @@
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="test-lansdale">
+        <description>
+            Persistence unit for JPA in test mode
+        </description>
+		<class>com.talksoft.dao.AlertLog</class>
+		<class>com.talksoft.dao.AlertNotification</class>    
+		<class>com.talksoft.dao.AlertEntity</class>       
+		<class>com.talksoft.dao.AlertAggregate</class>
+		<class>com.talksoft.dao.Server</class>        
+		<class>com.talksoft.dao.AlertCatalog</class>    
+		<class>com.talksoft.dao.AlertPriority</class>
+		<class>com.talksoft.dao.AlertStatus</class>
+		<class>com.talksoft.dao.Component</class>
+		<class>com.talksoft.dao.Employee</class>      
+		<class>com.talksoft.dao.ApplicationProperties</class> 
+		<class>com.talksoft.dao.Heartbeat</class>  
+		 
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.14/talksoft_test" />
+            <property name="javax.persistence.jdbc.user" value="talksoft_test" />
+            <property name="javax.persistence.jdbc.password" value="password" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="format_sql" value="true" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.c3p0.acquire_increment" value="1" />
+            <property name="hibernate.c3p0.idle_test_period" value="60"/>
+        	<property name="hibernate.c3p0.max_size" value="4"/>
+        	<property name="hibernate.c3p0.max_statements" value="50"/>
+        	<property name="hibernate.c3p0.min_size" value="1"/>
+			<property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
+        	<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+            
+        </properties>
+
+    </persistence-unit>
+    
+    <persistence-unit name="test-conshohocken">
+        <description>
+            Persistence unit for JPA in test mode
+        </description>
+		<class>com.talksoft.dao.AlertLog</class>
+		<class>com.talksoft.dao.AlertNotification</class>    
+		<class>com.talksoft.dao.AlertEntity</class>       
+		<class>com.talksoft.dao.AlertAggregate</class>
+		<class>com.talksoft.dao.Server</class>        
+		<class>com.talksoft.dao.AlertCatalog</class>    
+		<class>com.talksoft.dao.AlertPriority</class>
+		<class>com.talksoft.dao.AlertStatus</class>
+		<class>com.talksoft.dao.Component</class>
+		<class>com.talksoft.dao.Employee</class>     
+		<class>com.talksoft.dao.ApplicationProperties</class>   
+		<class>com.talksoft.dao.Heartbeat</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.30/talksoft_test" />
+            <property name="javax.persistence.jdbc.user" value="talksoft_test" />
+            <property name="javax.persistence.jdbc.password" value="password" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="format_sql" value="true" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.c3p0.acquire_increment" value="1" />
+            <property name="hibernate.c3p0.idle_test_period" value="60"/>
+        	<property name="hibernate.c3p0.max_size" value="4"/>
+        	<property name="hibernate.c3p0.max_statements" value="50"/>
+        	<property name="hibernate.c3p0.min_size" value="1"/>
+			<property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
+        	<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+            
+        </properties>
+
+    </persistence-unit>
+    
+    <persistence-unit name="prod-lansdale">
+        <description>
+            Persistence unit for JPA in test mode
+        </description>
+
+        <class>com.talksoft.dao.BaseEntity</class>
+		<class>com.talksoft.dao.AlertLog</class>
+		<class>com.talksoft.dao.AlertNotification</class>    
+		<class>com.talksoft.dao.AlertEntity</class>       
+		<class>com.talksoft.dao.AlertAggregate</class>
+		<class>com.talksoft.dao.Server</class>        
+		<class>com.talksoft.dao.AlertCatalog</class>    
+		<class>com.talksoft.dao.AlertPriority</class>
+		<class>com.talksoft.dao.AlertStatus</class>
+		<class>com.talksoft.dao.Component</class>
+		<class>com.talksoft.dao.Employee</class>  
+		<class>com.talksoft.dao.ApplicationProperties</class>      
+		<class>com.talksoft.dao.Heartbeat</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.14/talksoft_prod" />
+            <property name="javax.persistence.jdbc.user" value="talksoft_prod" />
+            <property name="javax.persistence.jdbc.password" value="remindme123" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.hbm2ddl.auto" value="validate" />            
+            <property name="hibernate.c3p0.acquire_increment" value="1" />
+            <property name="hibernate.c3p0.idle_test_period" value="60"/>
+        	<property name="hibernate.c3p0.max_size" value="20"/>
+        	<property name="hibernate.c3p0.max_statements" value="50"/>
+        	<property name="hibernate.c3p0.min_size" value="5"/>
+			<property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
+        	<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+        </properties>
+
+    </persistence-unit>
+    
+	<persistence-unit name="prod-conshohocken">
+        <description>
+            Persistence unit for JPA in test mode
+        </description>
+
+        <class>com.talksoft.dao.BaseEntity</class>
+		<class>com.talksoft.dao.AlertLog</class>
+		<class>com.talksoft.dao.AlertNotification</class>    
+		<class>com.talksoft.dao.AlertEntity</class>       
+		<class>com.talksoft.dao.AlertAggregate</class>
+		<class>com.talksoft.dao.Server</class>        
+		<class>com.talksoft.dao.AlertCatalog</class>    
+		<class>com.talksoft.dao.AlertPriority</class>
+		<class>com.talksoft.dao.AlertStatus</class>
+		<class>com.talksoft.dao.Component</class>
+		<class>com.talksoft.dao.Employee</class>       
+		<class>com.talksoft.dao.ApplicationProperties</class> 
+		<class>com.talksoft.dao.Heartbeat</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.30/talksoft_prod" />
+            <property name="javax.persistence.jdbc.user" value="talksoft_prod" />
+            <property name="javax.persistence.jdbc.password" value="remindme123" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.hbm2ddl.auto" value="validate" />            
+            <property name="hibernate.c3p0.acquire_increment" value="1" />
+            <property name="hibernate.c3p0.idle_test_period" value="60"/>
+        	<property name="hibernate.c3p0.max_size" value="20"/>
+        	<property name="hibernate.c3p0.max_statements" value="50"/>
+        	<property name="hibernate.c3p0.min_size" value="5"/>
+			<property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
+        	<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+        </properties>
+
+    </persistence-unit>
+    
+</persistence>
