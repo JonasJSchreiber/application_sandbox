@@ -86,4 +86,28 @@ public class QuotationsTest {
         s = quotations.specialProcessing(s);
         assertEquals(expected, s);
     }
+
+    @Test
+    public void test11() {
+        String s = "<p class=\"indented\">‘Go!’ said Rollo, taking his own advice and making a run for his ship. Solace registered a growing shudder throughout the bay and realized that someone on board had engaged the <em class=\"calibre5\">Vulture</em>’s mass drives, ready to rip the vessel – and its salvage – free of the station’s hold.</p>";
+        String expected = "<p class=\"indented\">“Go!” said Rollo, taking his own advice and making a run for his ship. Solace registered a growing shudder throughout the bay and realized that someone on board had engaged the <em class=\"calibre5\">Vulture</em>’s mass drives, ready to rip the vessel – and its salvage – free of the station’s hold.</p>";
+        s = quotations.specialProcessing(s);
+        assertEquals(expected, s);
+    }
+
+    @Test
+    public void test12() {
+        String s = "<p class=\"indented\">‘Doesn’t mean we do what you say,’ rejoined the truculent Rostand. ‘’Specially not here.’</p>";
+        String expected = "<p class=\"indented\">“Doesn’t mean we do what you say,” rejoined the truculent Rostand. “’Specially not here.”</p>";
+        s = quotations.specialProcessing(s);
+        assertEquals(expected, s);
+    }
+
+    @Test
+    public void test13() {
+        String s = "<p class=\"indented\">Telemmier broke in. ‘It did happen. And it was recent. I expect you’ve seen the <em class=\"calibre5\">Oumaru</em>’s departure logs. <em class=\"calibre5\">Something</em> pulled her off course into the deep void and did&#160;.&#160;.&#160;.&#160;<em class=\"calibre5\">that</em> to her.’</p>";
+        String expected = "<p class=\"indented\">Telemmier broke in. “It did happen. And it was recent. I expect you’ve seen the <em class=\"calibre5\">Oumaru</em>’s departure logs. <em class=\"calibre5\">Something</em> pulled her off course into the deep void and did&#160;.&#160;.&#160;.&#160;<em class=\"calibre5\">that</em> to her.”</p>";
+        s = quotations.specialProcessing(s);
+        assertEquals(expected, s);
+    }
 }

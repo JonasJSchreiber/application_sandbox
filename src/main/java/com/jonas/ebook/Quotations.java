@@ -27,7 +27,7 @@ public class Quotations {
 	private static final String candidateCloseQuotePattern = ".*‘[^”]*’[^A-Za-z].*";
 	private static final String candidateUndo = ".*”[^‘\\s]*”.*";
 	private static final String correctionCandidate = ".*" + closeDoubleQuote + "[^" + openDoubleQuote + "]*" + closeDoubleQuote + ".*";
-	
+
 	public static String specialProcessing(String s) {
 		if (s.indexOf(openSingleQuote) != -1 && openSingleQuoteBeforeOpenDoubleQuote(s)) {
 			s = preprocess(s);
@@ -85,6 +85,11 @@ public class Quotations {
 		return isACharacter(s, i - 1) && isACharacter(s, i + 1);
 	}
 
+
+	public static boolean isCharacterSandwichedByTwoNonCharacters(String s, int i) {
+		return !isACharacter(s, i - 1) && !isACharacter(s, i + 1);
+	}
+
 	public static boolean isACharacter(String s, int i) {
 		return (s.charAt(i) >= 'a' && s.charAt(i) <= 'z')
 				|| (s.charAt(i) >= 'A' && s.charAt(i) <= 'Z');
@@ -93,6 +98,10 @@ public class Quotations {
 	public static boolean isCharacterPrecededByAnHtmlCharacterAndFollowedByACharacter(String s, int i) {
 		return s.charAt(i-1) == '>' && (s.charAt(i + 1) >= 'a'
 				|| s.charAt(i + 1) <= 'z');
+	}
+
+	public static boolean isCharacterPrecededOrFollowedByANonCharacter(String s, int i) {
+		return !isACharacter(s, i - 1) || !isACharacter(s, i + 1);
 	}
 
 	public static boolean isCharacterPrecededOrFollowedByALowerCaseCharacter(String s, int i) {
@@ -127,19 +136,6 @@ public class Quotations {
 		return s;
 	}
 
-	public static String postprocess2Head(String s) {
-		if (s.matches(correctionCandidate)) {
-			int target = s.indexOf(closeSingleQuote, s.indexOf(openDoubleQuote));
-			int target2 = s.indexOf(closeSingleQuote, target+1);
-			int secondQuote = s.indexOf(openDoubleQuote, s.indexOf(openDoubleQuote) + 1);
-			if (target > 0 && secondQuote > 0) {
-				if (isAQualifyingClosedSingleQuote(s, target)) s = s.substring(0, target) + closeDoubleQuote + s.substring(target + 1);
-				else if (isAQualifyingClosedSingleQuote(s, target2)) s = s.substring(0, target2) + closeDoubleQuote + s.substring(target2 + 1);
-			}
-		}
-		return s;
-	}
-
 	public static String postprocess2(String s) {
 		if (s.matches(correctionCandidate)) {
 			List<Integer> targets = new ArrayList<>();
@@ -161,10 +157,11 @@ public class Quotations {
 	}
 
 	public static Integer rankCharacterAccordingToLikelinessToBeASingleQuote(String s, int i) {
-		if (isCharacterSandwichedByTwoCharacters(s, i)) return 0;
+		if (isCharacterSandwichedByTwoNonCharacters(s, i)) return 3;
 		if (isCharacterPrecededByAnHtmlCharacterAndFollowedByACharacter(s, i)) return 2;
-		if (isCharacterPrecededOrFollowedByALowerCaseCharacter(s, i)) return 1;
-		return 3;
+		if (isCharacterPrecededOrFollowedByANonCharacter(s, i)) return 1;
+		if (isCharacterSandwichedByTwoCharacters(s, i)) return 0;
+		return -1;
 	}
 
 	public static void main(String[] args) throws IOException {
